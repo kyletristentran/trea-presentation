@@ -205,12 +205,13 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            padding: 60px 40px;
+            padding: 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
+            min-height: 100vh;
         }
 
         .slide-2::before {
@@ -230,7 +231,11 @@
             position: relative;
             z-index: 2;
             width: 100%;
-            max-width: 1400px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .about-main-title {
@@ -246,9 +251,10 @@
         .about-pillars-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin: 0 auto;
+            gap: 50px;
             width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .about-pillar-card {
@@ -409,26 +415,47 @@
         @media (max-width: 1024px) {
             .about-pillars-container {
                 grid-template-columns: 1fr;
-                max-width: 600px;
+                max-width: 700px;
+                gap: 30px;
+            }
+            
+            .about-main-title {
+                font-size: 56px;
+                margin-bottom: 60px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide-2 {
+                padding: 30px 20px;
             }
             
             .about-main-title {
                 font-size: 48px;
+                margin-bottom: 50px;
+            }
+            
+            .about-pillars-container {
+                gap: 25px;
+            }
+            
+            .about-pillar-card {
+                padding: 30px 25px;
             }
         }
 
         @media (max-width: 640px) {
             .slide-2 {
-                padding: 40px 20px;
+                padding: 20px 15px;
             }
             
             .about-main-title {
                 font-size: 36px;
-                margin-bottom: 50px;
+                margin-bottom: 40px;
             }
             
             .about-pillar-card {
-                padding: 30px 20px;
+                padding: 25px 20px;
             }
             
             .about-trea-logo {
