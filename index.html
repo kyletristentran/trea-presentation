@@ -800,7 +800,11 @@
 
         /* Slide 8 - TREA Portal */
         .slide-8 {
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('pics/background4.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             padding: 60px;
             display: flex;
             align-items: center;
@@ -1316,30 +1320,37 @@
         /* Navigation */
         .navigation {
             position: fixed;
-            bottom: 30px;
+            bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 15px;
+            gap: 6px;
             z-index: 1000;
-            background: rgba(0,0,0,0.5);
-            padding: 15px 25px;
-            border-radius: 50px;
-            backdrop-filter: blur(10px);
+            background: rgba(0,0,0,0.2);
+            padding: 6px 12px;
+            border-radius: 25px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
         }
 
         .nav-btn {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.08);
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
+            padding: 8px 14px;
+            border-radius: 18px;
             cursor: pointer;
-            font-size: 16px;
-            transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            min-width: 70px;
+            justify-content: center;
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(10px);
         }
 
         .nav-btn::before {
@@ -1349,8 +1360,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s ease;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.4s ease;
         }
 
         .nav-btn:hover::before {
@@ -1358,25 +1369,76 @@
         }
 
         .nav-btn:hover {
-            background: rgba(255,255,255,0.3);
-            transform: scale(1.1) translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
         }
 
         .nav-btn:active {
-            transform: scale(0.95);
+            transform: translateY(0);
+            transition: all 0.1s ease;
         }
 
-        .slide-indicator {
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .nav-btn:disabled:hover {
+            background: rgba(255,255,255,0.08);
+            transform: none;
+            box-shadow: none;
+        }
+
+
+        /* Keyboard shortcut hint */
+        .keyboard-hint {
             position: fixed;
-            top: 30px;
-            right: 30px;
-            color: white;
-            font-size: 18px;
-            background: rgba(0,0,0,0.5);
-            padding: 10px 20px;
-            border-radius: 20px;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.6);
+            font-size: 12px;
+            font-weight: 400;
+            background: rgba(0,0,0,0.1);
+            padding: 6px 12px;
+            border-radius: 15px;
             backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.05);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .keyboard-hint.show {
+            opacity: 1;
+        }
+
+        /* Navigation feedback animation */
+        .nav-feedback {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+            background: rgba(0,0,0,0.7);
+            padding: 20px 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2);
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.8);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 2000;
+        }
+
+        .nav-feedback.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
         }
     </style>
 </head>
@@ -1717,16 +1779,20 @@
         <button class="nav-btn" onclick="nextSlide()">Next →</button>
     </div>
 
-    <!-- Slide Indicator -->
-    <div class="slide-indicator">
-        <span id="current-slide">1</span> / <span id="total-slides">10</span>
+
+    <!-- Keyboard Shortcut Hint -->
+    <div class="keyboard-hint" id="keyboard-hint">
+        Use ← → arrow keys, spacebar, or number keys to navigate
     </div>
+
+    <!-- Navigation Feedback -->
+    <div class="nav-feedback" id="nav-feedback"></div>
 
     <script>
         let currentSlide = 1;
         const totalSlides = 10;
 
-        function showSlide(n) {
+        function showSlide(n, showFeedback = false) {
             const slides = document.getElementsByClassName('slide');
             if (n > totalSlides) currentSlide = 1;
             if (n < 1) currentSlide = totalSlides;
@@ -1736,25 +1802,61 @@
             }
             
             slides[currentSlide - 1].classList.add('active');
-            document.getElementById('current-slide').textContent = currentSlide;
+            
+            // Show feedback if requested
+            if (showFeedback) {
+                showNavigationFeedback(`Slide ${currentSlide}`);
+            }
         }
 
         function nextSlide() {
-            showSlide(currentSlide += 1);
+            showSlide(currentSlide += 1, false);
         }
 
         function previousSlide() {
-            showSlide(currentSlide -= 1);
+            showSlide(currentSlide -= 1, false);
+        }
+
+        function showNavigationFeedback(message) {
+            const feedback = document.getElementById('nav-feedback');
+            feedback.textContent = message;
+            feedback.classList.add('show');
+            
+            setTimeout(() => {
+                feedback.classList.remove('show');
+            }, 800);
         }
 
         // Keyboard navigation
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowRight') nextSlide();
-            if (e.key === 'ArrowLeft') previousSlide();
+            // Prevent default behavior for arrow keys to avoid page scrolling
+            if (['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'Space', 'Enter'].includes(e.key)) {
+                e.preventDefault();
+            }
+            
+            // Navigation keys
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+                nextSlide();
+            }
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                previousSlide();
+            }
+            
+            // Number keys for direct slide navigation
+            if (e.key >= '1' && e.key <= '9') {
+                const slideNumber = parseInt(e.key);
+                if (slideNumber <= totalSlides) {
+                    currentSlide = slideNumber;
+                    showSlide(currentSlide, false);
+                }
+            }
+            if (e.key === '0' && totalSlides >= 10) {
+                currentSlide = 10;
+                showSlide(currentSlide, false);
+            }
         });
 
         // Initialize
-        document.getElementById('total-slides').textContent = totalSlides;
     </script>
 </body>
 </html>
