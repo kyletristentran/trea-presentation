@@ -434,16 +434,36 @@ to the <!DOCTYPE html>
         }
 
         .qr-code {
-            width: 200px;
-            height: 200px;
+            width: 300px;
+            height: 300px;
             background: white;
-            border-radius: 15px;
-            display: inline-flex;
+            border-radius: 20px;
+            display: flex;
             align-items: center;
             justify-content: center;
             font-size: 24px;
             color: #333;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            margin: 0 auto;
+            transition: transform 0.3s ease;
+        }
+
+        .qr-code:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .qr-code {
+                width: 250px;
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .qr-code {
+                width: 200px;
+                height: 200px;
+            }
         }
 
         /* Slide 6 - Newsletter */
