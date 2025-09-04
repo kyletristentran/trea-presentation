@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TREA - Trojan Real Estate Association</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #8B2332 0%, #5c1821 100%);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .presentation-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .slide.active {
+            display: flex;
+            opacity: 1;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Slide 1 - Title */
+        .slide-1 {
+            background: linear-gradient(135deg, #8B2332 0%, #5c1821 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .logo {
+            width: 150px;
+            height: 150px;
+            background: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 72px;
+            color: #8B2332;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .title-text {
+            text-align: left;
+        }
+
+        .title-text h1 {
+            font-size: 72px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
+
+        .title-text p {
+            font-size: 28px;
+            font-weight: 300;
+            opacity: 0.95;
+            letter-spacing: 2px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Slide 2 - About TREA */
+        .slide-2 {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        linear-gradient(135deg, #1a1a2e, #16213e);
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide-2 h2 {
+            color: white;
+            font-size: 64px;
+            margin-bottom: 60px;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .pillars-container {
+            display: flex;
+            gap: 50px;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1400px;
+        }
+
+        .pillar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 40px 30px;
+            flex: 1;
+            min-width: 350px;
+            color: white;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .pillar:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .pillar-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+            text-align: center;
+        }
+
+        .pillar h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #FFC72C;
+        }
+
+        .pillar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pillar li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .pillar li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #FFC72C;
+        }
+
+        /* Slide 3 - E-Board */
+        .slide-3 {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            padding: 60px;
+            color: white;
+        }
+
+        .slide-3 h2 {
+            text-align: center;
+            font-size: 56px;
+            margin-bottom: 50px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .eboard-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .board-member {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #FFC72C;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .board-member:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateX(10px);
+        }
+
+        .member-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #FFC72C;
+        }
+
+        .member-position {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .member-asterisk {
+            color: #ff6b6b;
+            margin-right: 5px;
+        }
+
+        /* Slides 4 & 5 - Mentorship */
+        .slide-4, .slide-5 {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                        linear-gradient(135deg, #8B2332, #5c1821);
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .mentorship-content {
+            max-width: 1000px;
+            background: rgba(255,255,255,0.05);
+            padding: 60px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .mentorship-content h2 {
+            font-size: 48px;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #FFC72C;
+        }
+
+        .program-section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+        }
+
+        .program-section h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #FFC72C;
+        }
+
+        .program-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .program-section li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .program-section li:before {
+            content: "●";
+            position: absolute;
+            left: 0;
+            color: #FFC72C;
+        }
+
+        .qr-code-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            background: white;
+            border-radius: 15px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Slide 6 - Newsletter */
+        .slide-6 {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .newsletter-content {
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .newsletter-content h2 {
+            font-size: 56px;
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+
+        .newsletter-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            text-align: left;
+        }
+
+        .feature-item {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 15px;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            border-left: 4px solid #FFC72C;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* Slide 7 - TREA Portal */
+        .slide-7 {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            padding: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .portal-content {
+            max-width: 1000px;
+            text-align: center;
+        }
+
+        .portal-content h2 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .portal-subtitle {
+            font-size: 28px;
+            margin-bottom: 50px;
+            color: #FFC72C;
+            font-weight: 300;
+        }
+
+        .portal-features {
+            margin-bottom: 50px;
+        }
+
+        .portal-features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .portal-features li {
+            font-size: 22px;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .portal-features li:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateX(10px);
+        }
+
+        .why-matters {
+            background: rgba(255,255,255,0.05);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .why-matters h3 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #FFC72C;
+        }
+
+        /* Slide 8 - Join */
+        .slide-8 {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                        linear-gradient(135deg, #8B2332, #5c1821);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .join-content h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 300;
+        }
+
+        .join-content h3 {
+            font-size: 64px;
+            margin-bottom: 50px;
+            text-align: center;
+            font-weight: 300;
+            letter-spacing: 4px;
+        }
+
+        /* Navigation */
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+            background: rgba(0,0,0,0.5);
+            padding: 15px 25px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            color: white;
+            font-size: 18px;
+            background: rgba(0,0,0,0.5);
+            padding: 10px 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide slide-1 active">
+            <div class="logo-container">
+                <div class="logo">🏛️</div>
+                <div class="title-text">
+                    <h1>TREA</h1>
+                    <p>Trojan Real Estate Association</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: About TREA -->
+        <div class="slide slide-2">
+            <h2>About TREA</h2>
+            <div class="pillars-container">
+                <div class="pillar">
+                    <span class="pillar-icon">🤝</span>
+                    <h3>Recruiting & Career Exposure</h3>
+                    <ul>
+                        <li>Host on-campus and off-campus networking events with top real estate employers</li>
+                        <li>Exclusive company info sessions, site tours, and career fairs tailored to TREA members</li>
+                    </ul>
+                </div>
+                <div class="pillar">
+                    <span class="pillar-icon">🏢</span>
+                    <h3>Member Community & Engagement</h3>
+                    <ul>
+                        <li>Social events, coffee chats, and casual meet-ups with peers and professionals</li>
+                        <li>Dining Society dinners with industry leaders in an intimate setting</li>
+                        <li>Collaborative, supportive environment for career and academic growth</li>
+                    </ul>
+                </div>
+                <div class="pillar">
+                    <span class="pillar-icon">📈</span>
+                    <h3>Professional Development</h3>
+                    <ul>
+                        <li>Analyst Program for hands-on deal analysis and industry skill-building</li>
+                        <li>Recruitment workshops covering resumes, interviews, and networking strategy</li>
+                        <li>One-on-one mentorship with industry professionals and alumni</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Meet the E-Board -->
+        <div class="slide slide-3">
+            <h2>Meet the E-Board</h2>
+            <div class="eboard-grid">
+                <div class="board-member">
+                    <div>
+                        <div class="member-name"><span class="member-asterisk">*</span>Samantha</div>
+                        <div class="member-position">President</div>
+                    </div>
+                </div>
+                <div class="board-member">
+                    <div>
+                        <div class="member-name"><span class="member-asterisk">*</span>Dario</div>
+                        <div class="member-position">President</div>
+                    </div>
+                </div>
+                <div class="board-member">
+                    <div>
+                        <div class="member-name"><span class="member-asterisk">*</span>Kyle</div>
+                        <div class="member-position">Director of Business Strategy</div>
+                    </div>
+                </div>
+                <div class="board-member">
+                    <div>
+                        <div class="member-name">Christian</div>
+                        <div class="member-position">Director of Finance</div>
+                    </div>
+                </div>
+                <div class="board-member">
+                    <div>
+                        <div class="member-name">Kaya</div>
+                        <div class="member-position">Director of External Communication</div>
+                    </div>
+                </div>
+                <div class="board-member">
+                    <div>
+                        <div class="member-name"><span class="member-asterisk">*</span>Ebony</div>
+                        <div class="member-position">Director of Internal Communication</div>
+                    </div>
+                </div>
+                <div class="board-member">
+                    <div>
+                        <div class="member-name"><span class="member-asterisk">*</span>Shivani</div>
+                        <div class="member-position">Director of On-Campus Events</div>
+                    </div>
+                </div>
+                <div class="board-member">
+                    <div>
+                        <div class="member-name">Nathan</div>
+                        <div class="member-position">Director of Off-Campus Events</div>
+                    </div>
+                </div>
+                <div class="board-member">
+                    <div>
+                        <div class="member-name">Keenan</div>
+                        <div class="member-position">Director of Recruitment</div>
+                    </div>
+                </div>
+                <div class="board-member">
+                    <div>
+                        <div class="member-name">Kody</div>
+                        <div class="member-position">Director of Mentorship</div>
+                    </div>
+                </div>
+                <div class="board-member">
+                    <div>
+                        <div class="member-name">Willa</div>
+                        <div class="member-position">Director of Professional Relations</div>
+                    </div>
+                </div>
+                <div class="board-member">
+                    <div>
+                        <div class="member-name">Jiho</div>
+                        <div class="member-position">Director of Professional Development</div>
+                    </div>
+                </div>
+                <div class="board-member">
+                    <div>
+                        <div class="member-name">Sophia</div>
+                        <div class="member-position">Director of DEI</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Mentorship Programs -->
+        <div class="slide slide-4">
+            <div class="mentorship-content">
+                <h2>Mentorship Programs</h2>
+                <div class="program-section">
+                    <h3>Alumni Mentorship Program</h3>
+                    <p style="color: #ff6b6b; margin-bottom: 20px;">Applications due: September 19th</p>
+                    <ul>
+                        <li>Open to MREFA and TREA members</li>
+                        <li>Students are paired with a USC alum working in real estate</li>
+                        <li>Great way to gain guidance, career advice, and connections</li>
+                        <li>Apply online via the provided link</li>
+                    </ul>
+                </div>
+                <div class="program-section">
+                    <h3>Student Mentorship Program</h3>
+                    <p style="color: #ff6b6b; margin-bottom: 20px;">Applications open next week</p>
+                    <ul>
+                        <li>Experienced students mentor newer members</li>
+                        <li>Available through TREA newsletter and website</li>
+                        <li>Pairings announced: October 1st</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: QR Code -->
+        <div class="slide slide-5">
+            <div style="text-align: center;">
+                <h2 style="font-size: 48px; margin-bottom: 40px; color: white;">SCAN FOR ALUMNI MENTORSHIP PROGRAM APPLICATION</h2>
+                <div class="qr-code">[QR CODE]</div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Weekly Newsletter -->
+        <div class="slide slide-6">
+            <div class="newsletter-content">
+                <h2>Weekly Newsletter</h2>
+                <div class="newsletter-features">
+                    <div class="feature-item">Internal event announcements</div>
+                    <div class="feature-item">External Company/Organization event announcements</div>
+                    <div class="feature-item">Job/Internship Opportunities</div>
+                    <div class="feature-item">Market News</div>
+                    <div class="feature-item">Helpful Real Estate Resources</div>
+                    <div class="feature-item">Alumni/Member Spotlights</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: TREA Portal -->
+        <div class="slide slide-7">
+            <div class="portal-content">
+                <h2>TREA Portal</h2>
+                <p class="portal-subtitle">USC Trojan Real Estate Hub</p>
+                <div class="portal-features">
+                    <ul>
+                        <li>📚 Coffee Chat Guide: Build real connections with professionals</li>
+                        <li>📖 Educational Resources: Access guides and learning materials</li>
+                        <li>📅 Event Calendar: See upcoming TREA events at a glance</li>
+                        <li>🤝 Networking: Connect with the Trojan real estate community</li>
+                    </ul>
+                </div>
+                <div class="why-matters">
+                    <h3>Why it matters:</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="font-size: 18px; margin-bottom: 15px;">• Centralized access to career resources and events</li>
+                        <li style="font-size: 18px; margin-bottom: 15px;">• Builds knowledge and confidence outside the classroom</li>
+                        <li style="font-size: 18px;">• Strengthens the USC real estate network</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Join -->
+        <div class="slide slide-8">
+            <div class="join-content">
+                <h2>Trojan Real Estate Association 2025-2026</h2>
+                <h3>SCAN TO JOIN</h3>
+                <div class="qr-code">[QR CODE]</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">← Previous</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+    </div>
+
+    <!-- Slide Indicator -->
+    <div class="slide-indicator">
+        <span id="current-slide">1</span> / <span id="total-slides">8</span>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 8;
+
+        function showSlide(n) {
+            const slides = document.getElementsByClassName('slide');
+            if (n > totalSlides) currentSlide = 1;
+            if (n < 1) currentSlide = totalSlides;
+            
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove('active');
+            }
+            
+            slides[currentSlide - 1].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide += 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide -= 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+        });
+
+        // Initialize
+        document.getElementById('total-slides').textContent = totalSlides;
+    </script>
+</body>
+</html>

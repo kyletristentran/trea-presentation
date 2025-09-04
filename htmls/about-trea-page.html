@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About TREA - Trojan Real Estate Association</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            overflow-x: hidden;
+            background: #1a1a2e;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.7)), 
+                        linear-gradient(135deg, #2c3e50 0%, #3d5a80 100%);
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            padding: 60px 40px;
+        }
+
+        /* Background building silhouette effect */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, 
+                rgba(44, 62, 80, 0.3) 0%, 
+                rgba(26, 26, 46, 0.5) 100%);
+            z-index: 1;
+        }
+
+        /* Main Title */
+        .main-title {
+            text-align: center;
+            color: white;
+            font-size: 72px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 80px;
+            position: relative;
+            z-index: 2;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        /* Three Pillars Container */
+        .pillars-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Individual Pillar Card */
+        .pillar-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px 30px;
+            color: white;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pillar-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0) 0%, 
+                rgba(255, 255, 255, 0.02) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .pillar-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Pillar Icons */
+        .pillar-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            position: relative;
+        }
+
+        .icon-network {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            border-radius: 50%;
+            box-shadow: 0 8px 20px rgba(231, 76, 60, 0.3);
+        }
+
+        .icon-handshake {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            clip-path: polygon(50% 0%, 90% 25%, 90% 75%, 50% 100%, 10% 75%, 10% 25%);
+            box-shadow: 0 8px 20px rgba(231, 76, 60, 0.3);
+        }
+
+        .icon-growth {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(231, 76, 60, 0.3);
+        }
+
+        /* Pillar Titles */
+        .pillar-title {
+            font-size: 24px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 30px;
+            line-height: 1.3;
+            letter-spacing: 0.5px;
+        }
+
+        /* Pillar Content List */
+        .pillar-content {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pillar-content li {
+            margin-bottom: 20px;
+            padding-left: 28px;
+            position: relative;
+            font-size: 16px;
+            line-height: 1.7;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .pillar-content li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #FFC72C;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* TREA Logo Bottom Right */
+        .trea-logo {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            opacity: 0.8;
+            z-index: 3;
+        }
+
+        .logo-shield {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #8B2332;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .logo-text p {
+            font-size: 12px;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pillar-card:nth-child(1) { animation: fadeInUp 1s ease-out 0.2s backwards; }
+        .pillar-card:nth-child(2) { animation: fadeInUp 1s ease-out 0.4s backwards; }
+        .pillar-card:nth-child(3) { animation: fadeInUp 1s ease-out 0.6s backwards; }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .pillars-container {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+            }
+            
+            .main-title {
+                font-size: 48px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 40px 20px;
+            }
+            
+            .main-title {
+                font-size: 36px;
+                margin-bottom: 50px;
+            }
+            
+            .pillar-card {
+                padding: 30px 20px;
+            }
+            
+            .trea-logo {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-title">About TREA</h1>
+        
+        <div class="pillars-container">
+            <!-- Pillar 1: Recruiting & Career Exposure -->
+            <div class="pillar-card">
+                <div class="pillar-icon icon-network">👥</div>
+                <h2 class="pillar-title">Recruiting & Career Exposure</h2>
+                <ul class="pillar-content">
+                    <li>Host on-campus and off-campus networking events with top real estate employers</li>
+                    <li>Exclusive company info sessions, site tours, and career fairs tailored to TREA members</li>
+                </ul>
+            </div>
+
+            <!-- Pillar 2: Member Community & Engagement -->
+            <div class="pillar-card">
+                <div class="pillar-icon icon-handshake">🤝</div>
+                <h2 class="pillar-title">Member Community & Engagement</h2>
+                <ul class="pillar-content">
+                    <li>Social events, coffee chats, and casual meet-ups with peers and professionals</li>
+                    <li>Dining Society dinners with industry leaders in an intimate setting</li>
+                    <li>Collaborative, supportive environment for career and academic growth</li>
+                </ul>
+            </div>
+
+            <!-- Pillar 3: Professional Development -->
+            <div class="pillar-card">
+                <div class="pillar-icon icon-growth">📈</div>
+                <h2 class="pillar-title">Professional Development</h2>
+                <ul class="pillar-content">
+                    <li>Analyst Program for hands-on deal analysis and industry skill-building</li>
+                    <li>Recruitment workshops covering resumes, interviews, and networking strategy</li>
+                    <li>One-on-one mentorship with industry professionals and alumni</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TREA Logo Bottom Right -->
+        <div class="trea-logo">
+            <div class="logo-shield">🏛️</div>
+            <div class="logo-text">
+                <h3>TREA</h3>
+                <p>Trojan Real Estate Association</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
