@@ -475,8 +475,124 @@
             }
         }
 
-        /* Slide 6 - Newsletter */
+        /* Slide 6 - Upcoming Events */
         .slide-6 {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                        linear-gradient(135deg, rgba(139, 35, 50, 0.8), rgba(92, 24, 33, 0.8)),
+                        url('pics/usc_campus.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .events-content {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid #8B2332;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 1000px;
+            width: 100%;
+            color: #333;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .events-content h2 {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 40px;
+            color: #8B2332;
+            font-weight: 700;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .event-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            border-left: 4px solid #FFC72C;
+            transition: all 0.3s ease;
+            animation: pillarSlideIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
+
+        .event-item:hover {
+            transform: translateX(10px);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .company-logo {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .linkedin-logo {
+            width: 80px;
+            height: 80px;
+            background: #0077B5;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        .event-details {
+            flex: 1;
+        }
+
+        .event-type {
+            font-size: 18px;
+            font-weight: 600;
+            color: #8B2332;
+            margin-bottom: 5px;
+        }
+
+        .event-date {
+            font-size: 16px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .rsvp-info {
+            grid-column: 1 / -1;
+            justify-content: center;
+            background: rgba(255, 199, 44, 0.1);
+            border-left-color: #FFC72C;
+        }
+
+        .rsvp-text {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: #8B2332;
+        }
+
+        .rsvp-text div {
+            margin-bottom: 5px;
+        }
+
+        /* Slide 7 - Newsletter */
+        .slide-7 {
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
                         linear-gradient(135deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)),
                         url('pics/newsletter.png');
@@ -523,8 +639,8 @@
             background: rgba(255,255,255,0.15);
         }
 
-        /* Slide 7 - TREA Portal */
-        .slide-7 {
+        /* Slide 8 - TREA Portal */
+        .slide-8 {
             background: linear-gradient(rgba(139, 35, 50, 0.7), rgba(139, 35, 50, 0.5)), 
                         url('pics/usc_campus.jpg');
             background-size: cover;
@@ -785,8 +901,8 @@
             }
         }
 
-        /* Slide 8 - Join */
-        .slide-8 {
+        /* Slide 9 - Join */
+        .slide-9 {
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
                         linear-gradient(135deg, #8B2332, #5c1821);
             display: flex;
@@ -1059,8 +1175,58 @@
             </div>
         </div>
 
-        <!-- Slide 6: Weekly Newsletter -->
+        <!-- Slide 6: Upcoming Events -->
         <div class="slide slide-6">
+            <div class="events-content">
+                <h2>Upcoming Events</h2>
+                <div class="events-grid">
+                    <div class="event-item">
+                        <img src="company logos/bellwether.png" alt="Bellwether" class="company-logo">
+                        <div class="event-details">
+                            <div class="event-type">Company Info Session</div>
+                            <div class="event-date">9/09 6:30pm</div>
+                        </div>
+                    </div>
+                    <div class="event-item">
+                        <img src="company logos/cbre.png" alt="CBRE Investment Management" class="company-logo">
+                        <div class="event-details">
+                            <div class="event-type">Company Info Session</div>
+                            <div class="event-date">9/11 6:30pm</div>
+                        </div>
+                    </div>
+                    <div class="event-item">
+                        <img src="company logos/quadreal.png" alt="QuadReal" class="company-logo">
+                        <div class="event-details">
+                            <div class="event-type">Company Info Session</div>
+                            <div class="event-date">9/16 6:30pm</div>
+                        </div>
+                    </div>
+                    <div class="event-item">
+                        <div class="linkedin-logo">in</div>
+                        <div class="event-details">
+                            <div class="event-type">Resume/LinkedIn Workshop</div>
+                            <div class="event-date">9/18 6:30pm</div>
+                        </div>
+                    </div>
+                    <div class="event-item">
+                        <img src="company logos/rock-n-reily.png" alt="Rock & Reilly's" class="company-logo">
+                        <div class="event-details">
+                            <div class="event-type">TREA x MREFA Social</div>
+                            <div class="event-date">10/02 6:30pm</div>
+                        </div>
+                    </div>
+                    <div class="event-item rsvp-info">
+                        <div class="rsvp-text">
+                            <div>RSVP Forms in TREA</div>
+                            <div>Newsletter!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Weekly Newsletter -->
+        <div class="slide slide-7">
             <div class="newsletter-content">
                 <h2>Weekly Newsletter</h2>
                 <div class="newsletter-features">
@@ -1074,8 +1240,8 @@
             </div>
         </div>
 
-        <!-- Slide 7: TREA Portal -->
-        <div class="slide slide-7">
+        <!-- Slide 8: TREA Portal -->
+        <div class="slide slide-8">
             <!-- Header with Logo -->
             <div class="portal-header">
                 <div class="portal-logo">
@@ -1125,8 +1291,8 @@
             </div>
         </div>
 
-        <!-- Slide 8: Join -->
-        <div class="slide slide-8">
+        <!-- Slide 9: Join -->
+        <div class="slide slide-9">
             <div class="join-content">
                 <h2>Trojan Real Estate Association 2025-2026</h2>
                 <h3>SCAN TO JOIN</h3>
@@ -1143,12 +1309,12 @@
 
     <!-- Slide Indicator -->
     <div class="slide-indicator">
-        <span id="current-slide">1</span> / <span id="total-slides">8</span>
+        <span id="current-slide">1</span> / <span id="total-slides">9</span>
     </div>
 
     <script>
         let currentSlide = 1;
-        const totalSlides = 8;
+        const totalSlides = 9;
 
         function showSlide(n) {
             const slides = document.getElementsByClassName('slide');
