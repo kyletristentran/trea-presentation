@@ -199,8 +199,7 @@
 
         /* Slide 2 - About TREA */
         .slide-2 {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('pics/background2.jpg');
+            background: url('pics/background2.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -834,40 +833,18 @@
 
         /* Slide 8 - TREA Portal */
         .slide-8 {
-            background: linear-gradient(rgba(139, 35, 50, 0.7), rgba(139, 35, 50, 0.5)), 
-                        url('pics/usc_campus.jpg');
+            background: url('pics/usc_campus.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             position: relative;
-            padding: 0;
+            padding: 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             width: 100%;
             color: white;
-        }
-
-        /* USC Campus Background Overlay Effect */
-        .slide-8::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(180deg, 
-                rgba(139, 35, 50, 0.4) 0%, 
-                rgba(139, 35, 50, 0.6) 50%, 
-                rgba(92, 24, 33, 0.8) 100%);
-            z-index: 1;
-        }
-
-        /* All content above the overlay */
-        .slide-8 > * {
-            position: relative;
-            z-index: 2;
         }
 
         /* USC Campus Background Overlay Effect */
