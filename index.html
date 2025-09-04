@@ -199,8 +199,7 @@
 
         /* Slide 2 - About TREA */
         .slide-2 {
-            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.7)), 
-                        linear-gradient(135deg, #2c3e50 0%, #3d5a80 100%),
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
                         url('pics/background2.jpg');
             background-size: cover;
             background-position: center;
@@ -212,24 +211,10 @@
             justify-content: center;
             position: relative;
             min-height: 100vh;
-        }
-
-        .slide-2::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(180deg, 
-                rgba(44, 62, 80, 0.3) 0%, 
-                rgba(26, 26, 46, 0.5) 100%);
-            z-index: 1;
+            width: 100%;
         }
 
         .about-trea-content {
-            position: relative;
-            z-index: 2;
             width: 100%;
             height: 100%;
             display: flex;
@@ -849,16 +834,18 @@
 
         /* Slide 8 - TREA Portal */
         .slide-8 {
-            background: linear-gradient(rgba(139, 35, 50, 0.7), rgba(139, 35, 50, 0.5)), 
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
                         url('pics/usc_campus.jpg');
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
             position: relative;
-            padding: 0;
+            padding: 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            width: 100%;
             color: white;
         }
 
@@ -1158,7 +1145,7 @@
         <div class="slide slide-1 active">
             <div class="logo-container">
                 <div class="logo">
-                    <img src="trea_logo.png" alt="TREA Logo">
+                    <img src="trea_logo_transparent.png" alt="TREA Logo">
                 </div>
                 <div class="title-text">
                     <h1>TREA</h1>
