@@ -859,6 +859,245 @@
             color: #FFC72C;
         }
 
+        /* Slide 9 - TREA Portal Full Page */
+        .slide-9 {
+            background: linear-gradient(rgba(139, 35, 50, 0.7), rgba(139, 35, 50, 0.5)), 
+                        url('pics/usc_campus.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        /* USC Campus Background Overlay Effect */
+        .slide-9::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, 
+                rgba(139, 35, 50, 0.4) 0%, 
+                rgba(139, 35, 50, 0.6) 50%, 
+                rgba(92, 24, 33, 0.8) 100%);
+            z-index: 1;
+        }
+
+        /* All content above the overlay */
+        .slide-9 > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Header with Logo */
+        .portal-header {
+            position: absolute;
+            top: 40px;
+            left: 60px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .portal-logo {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .portal-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .portal-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .portal-logo-text h1 {
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+
+        .portal-logo-text p {
+            font-size: 14px;
+            opacity: 0.95;
+            margin: 0;
+            font-weight: 300;
+        }
+
+        /* Main Content */
+        .portal-main-content {
+            text-align: center;
+            max-width: 1200px;
+            padding: 0 40px;
+            margin-top: -50px;
+        }
+
+        .portal-welcome-text {
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 10px;
+            opacity: 0.95;
+        }
+
+        .portal-main-title {
+            font-size: 56px;
+            font-weight: 600;
+            color: #FFC72C;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .portal-tagline {
+            font-size: 18px;
+            font-weight: 300;
+            margin-bottom: 50px;
+            opacity: 0.95;
+            line-height: 1.5;
+        }
+
+        /* Access Portal Button */
+        .portal-button {
+            background: white;
+            color: #8B2332;
+            padding: 18px 45px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .portal-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: #f8f8f8;
+        }
+
+        .portal-button::after {
+            content: '→';
+            font-size: 20px;
+        }
+
+        .portal-members-note {
+            font-size: 14px;
+            opacity: 0.85;
+            margin-bottom: 80px;
+        }
+
+        /* Feature Cards */
+        .portal-features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .portal-feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 35px 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .portal-feature-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .portal-feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #FFC72C;
+            display: block;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .portal-feature-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .portal-feature-description {
+            font-size: 15px;
+            opacity: 0.9;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* Responsive Design for Portal */
+        @media (max-width: 1024px) {
+            .portal-features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .portal-main-title {
+                font-size: 48px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .portal-header {
+                left: 30px;
+                top: 30px;
+            }
+            
+            .portal-main-title {
+                font-size: 36px;
+            }
+            
+            .portal-features-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .portal-feature-card {
+                padding: 25px 20px;
+            }
+        }
+
+        /* Slide 10 - Join */
+        .slide-10 {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                        linear-gradient(135deg, #8B2332, #5c1821);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
         /* USC Campus Background Overlay Effect */
         .slide-7::before {
             content: '';
@@ -1419,8 +1658,59 @@
             </div>
         </div>
 
-        <!-- Slide 9: Join -->
+        <!-- Slide 9: TREA Portal Full Page -->
         <div class="slide slide-9">
+            <!-- Header with Logo -->
+            <div class="portal-header">
+                <div class="portal-logo">
+                    <img src="trea_logo_transparent.png" alt="TREA Logo">
+                </div>
+                <div class="portal-logo-text">
+                    <h1>TREA</h1>
+                    <p>Trojan Real Estate Association</p>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="portal-main-content">
+                <div class="portal-welcome-text">Welcome to the</div>
+                <h1 class="portal-main-title">Trojan Real Estate Association</h1>
+                <p class="portal-tagline">Your gateway to USC's premier real estate network. Connect, learn, and grow with 500+ alumni and students.</p>
+                
+                <button class="portal-button">Access Member Portal</button>
+                <p class="portal-members-note">Members only • Secure access required</p>
+            </div>
+
+            <!-- Feature Cards -->
+            <div class="portal-features-grid">
+                <div class="portal-feature-card">
+                    <span class="portal-feature-icon">📋</span>
+                    <h3 class="portal-feature-title">Industry Events</h3>
+                    <p class="portal-feature-description">Exclusive networking and learning opportunities</p>
+                </div>
+                
+                <div class="portal-feature-card">
+                    <span class="portal-feature-icon">👥</span>
+                    <h3 class="portal-feature-title">Alumni Network</h3>
+                    <p class="portal-feature-description">Connect with 500+ USC real estate professionals</p>
+                </div>
+                
+                <div class="portal-feature-card">
+                    <span class="portal-feature-icon">📅</span>
+                    <h3 class="portal-feature-title">Career Resources</h3>
+                    <p class="portal-feature-description">Job board and mentorship programs</p>
+                </div>
+                
+                <div class="portal-feature-card">
+                    <span class="portal-feature-icon">📚</span>
+                    <h3 class="portal-feature-title">Educational Content</h3>
+                    <p class="portal-feature-description">Industry insights and market analysis</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Join -->
+        <div class="slide slide-10">
             <div class="join-content">
                 <h2>Trojan Real Estate Association 2025-2026</h2>
                 <h3>SCAN TO JOIN</h3>
@@ -1437,12 +1727,12 @@
 
     <!-- Slide Indicator -->
     <div class="slide-indicator">
-        <span id="current-slide">1</span> / <span id="total-slides">9</span>
+        <span id="current-slide">1</span> / <span id="total-slides">10</span>
     </div>
 
     <script>
         let currentSlide = 1;
-        const totalSlides = 9;
+        const totalSlides = 10;
 
         function showSlide(n) {
             const slides = document.getElementsByClassName('slide');
