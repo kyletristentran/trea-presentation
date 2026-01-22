@@ -2234,6 +2234,247 @@
         }
 
         /* =====================================================
+           NEW SLIDES - EVENTS CALENDAR
+           ===================================================== */
+        .slide-events-calendar {
+            background: linear-gradient(135deg, #8B2332 0%, #5c1821 100%);
+            flex-direction: column;
+            align-items: center;
+            padding: 35px 50px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-events-calendar::before {
+            content: '';
+            position: absolute;
+            top: -150px;
+            right: -150px;
+            width: 500px;
+            height: 500px;
+            border: 2px solid rgba(255, 199, 44, 0.08);
+            border-radius: 50%;
+        }
+
+        .slide-events-calendar::after {
+            content: '';
+            position: absolute;
+            bottom: -200px;
+            left: -200px;
+            width: 600px;
+            height: 600px;
+            border: 2px solid rgba(255, 199, 44, 0.05);
+            border-radius: 50%;
+        }
+
+        .calendar-header {
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .calendar-header-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, rgba(255,199,44,0.2), rgba(255,199,44,0.05));
+            border: 2px solid rgba(255,199,44,0.3);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .calendar-header-icon svg {
+            width: 32px;
+            height: 32px;
+            fill: #FFC72C;
+        }
+
+        .calendar-header h2 {
+            font-size: 42px;
+            font-weight: 300;
+            background: linear-gradient(45deg, #FFC72C, #ffffff, #FFC72C);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s ease-in-out infinite;
+            margin-bottom: 8px;
+        }
+
+        .calendar-header .semester {
+            font-size: 16px;
+            color: rgba(255,255,255,0.8);
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .event-legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            opacity: 0.9;
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .legend-dot.meeting { background: #FFC72C; }
+        .legend-dot.panel { background: #FFFFFF; }
+        .legend-dot.visit { background: #FFE082; }
+        .legend-dot.analyst { background: #CE93D8; }
+        .legend-dot.dining { background: #FFAB91; }
+        .legend-dot.volunteer { background: #A5D6A7; }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            width: 100%;
+            max-width: 1400px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .month-column {
+            background: rgba(0,0,0,0.2);
+            border-radius: 16px;
+            padding: 18px;
+            border: 1px solid rgba(255,199,44,0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .month-header {
+            text-align: center;
+            padding-bottom: 12px;
+            margin-bottom: 12px;
+            border-bottom: 2px solid rgba(255,199,44,0.3);
+        }
+
+        .month-header h3 {
+            font-size: 22px;
+            font-weight: 500;
+            color: #FFC72C;
+            margin-bottom: 2px;
+        }
+
+        .month-header .year {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        .events-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .cal-event-item {
+            background: rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 12px;
+            border-left: 3px solid #FFC72C;
+            transition: all 0.3s ease;
+        }
+
+        .cal-event-item:hover {
+            background: rgba(255,255,255,0.12);
+            transform: translateX(3px);
+        }
+
+        .cal-event-item.meeting { border-left-color: #FFC72C; }
+        .cal-event-item.panel { border-left-color: #FFFFFF; }
+        .cal-event-item.visit { border-left-color: #FFE082; }
+        .cal-event-item.analyst { border-left-color: #CE93D8; }
+        .cal-event-item.dining { border-left-color: #FFAB91; }
+        .cal-event-item.volunteer { border-left-color: #A5D6A7; }
+
+        .cal-event-item .event-title {
+            font-size: 12px;
+            font-weight: 500;
+            color: white;
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .cal-event-item .event-title .status {
+            font-size: 8px;
+            padding: 2px 5px;
+            border-radius: 3px;
+            background: rgba(255,199,44,0.25);
+            color: #FFC72C;
+            margin-left: 5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cal-event-item .event-title .status.hold {
+            background: rgba(255,255,255,0.2);
+            color: #FFFFFF;
+        }
+
+        .event-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .event-meta-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 10px;
+            opacity: 0.85;
+        }
+
+        .event-meta-row svg {
+            width: 11px;
+            height: 11px;
+            fill: #FFC72C;
+            opacity: 0.9;
+            flex-shrink: 0;
+        }
+
+        .event-meta-row.location {
+            opacity: 0.7;
+            font-size: 9px;
+        }
+
+        .month-placeholder {
+            padding: 15px;
+            text-align: center;
+            opacity: 0.5;
+            font-size: 12px;
+            margin-top: 15px;
+        }
+
+        .month-placeholder svg {
+            width: 35px;
+            height: 35px;
+            fill: rgba(255,199,44,0.4);
+            margin-bottom: 8px;
+        }
+
+        /* =====================================================
            NEW SLIDES - QUESTIONS
            ===================================================== */
         .slide-questions {
@@ -2816,50 +3057,277 @@
             </div>
         </div>
 
-        <!-- Slide 13: Updated Upcoming Events -->
-        <div class="slide slide-events-updated">
-            <div class="events-content-new">
-                <div class="events-header-new">
-                    <div class="calendar-icon">
-                        <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9 10H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm-8 4H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/></svg>
+        <!-- Slide 13: Events Calendar -->
+        <div class="slide slide-events-calendar">
+            <div class="calendar-header">
+                <div class="calendar-header-icon">
+                    <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9 10H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm-8 4H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/></svg>
+                </div>
+                <h2>TREA Upcoming Events</h2>
+                <p class="semester">Spring 2026 Semester</p>
+            </div>
+
+            <div class="event-legend">
+                <div class="legend-item">
+                    <span class="legend-dot meeting"></span>
+                    <span>Meetings</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-dot panel"></span>
+                    <span>Panels</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-dot visit"></span>
+                    <span>Site Visits</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-dot analyst"></span>
+                    <span>Analyst Program</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-dot dining"></span>
+                    <span>Dining Society</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-dot volunteer"></span>
+                    <span>Volunteering</span>
+                </div>
+            </div>
+
+            <div class="calendar-grid">
+                <!-- JANUARY -->
+                <div class="month-column">
+                    <div class="month-header">
+                        <h3>January</h3>
+                        <span class="year">2026</span>
                     </div>
-                    <h2>Upcoming Events</h2>
+                    <div class="events-list">
+                        <div class="cal-event-item meeting">
+                            <div class="event-title">TREA E-Board Meeting</div>
+                            <div class="event-meta">
+                                <div class="event-meta-row">
+                                    <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                                    <span>Sun, Jan 18</span>
+                                </div>
+                                <div class="event-meta-row">
+                                    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                                    <span>2:00 – 2:30 PM</span>
+                                </div>
+                                <div class="event-meta-row location">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                                    <span>Virtual (Google Meet)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cal-event-item meeting">
+                            <div class="event-title">TREA General Body Meeting <span class="status">Pending</span></div>
+                            <div class="event-meta">
+                                <div class="event-meta-row">
+                                    <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                                    <span>Thu, Jan 22</span>
+                                </div>
+                                <div class="event-meta-row">
+                                    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                                    <span>6:30 – 7:30 PM</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cal-event-item panel">
+                            <div class="event-title">Women's Panel from CREWLA</div>
+                            <div class="event-meta">
+                                <div class="event-meta-row">
+                                    <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                                    <span>Wed, Jan 28</span>
+                                </div>
+                                <div class="event-meta-row">
+                                    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                                    <span>2:00 – 5:00 PM</span>
+                                </div>
+                                <div class="event-meta-row location">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                                    <span>RGL 103 (Max: 28)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="events-grid-new">
-                    <div class="event-card-new">
-                        <span class="date-badge">
-                            <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
-                            JAN 28
-                        </span>
-                        <h3>Exclusive Masterclass</h3>
-                        <p class="partners">CREW LA  ·  TREA  ·  MREFA</p>
-                        <p>Join us for an evening of professional development and industry insights with Commercial Real Estate Women LA.</p>
-                        <p class="time">
-                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-                            6:30 PM
-                        </p>
+                <!-- FEBRUARY -->
+                <div class="month-column">
+                    <div class="month-header">
+                        <h3>February</h3>
+                        <span class="year">2026</span>
                     </div>
+                    <div class="events-list">
+                        <div class="cal-event-item visit">
+                            <div class="event-title">USC TREA | CBRE DTLA Visit <span class="status hold">Hold</span></div>
+                            <div class="event-meta">
+                                <div class="event-meta-row">
+                                    <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                                    <span>Wed, Feb 4</span>
+                                </div>
+                                <div class="event-meta-row">
+                                    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                                    <span>2:00 – 3:30 PM</span>
+                                </div>
+                            </div>
+                        </div>
 
-                    <div class="event-card-new">
-                        <span class="date-badge">
-                            <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
-                            JAN 29
-                        </span>
-                        <h3>Women's Social & Networking</h3>
-                        <p class="partners">TREA  ·  TREW  ·  UWIRE</p>
-                        <p>A casual evening for women in real estate to connect, share experiences, and build lasting relationships. Food provided.</p>
-                        <p class="time">
-                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-                            Thursday Evening
-                        </p>
+                        <div class="cal-event-item analyst">
+                            <div class="event-title">Analyst Program Session #1 <span class="status">Pending</span></div>
+                            <div class="event-meta">
+                                <div class="event-meta-row">
+                                    <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                                    <span>Wed, Feb 11</span>
+                                </div>
+                                <div class="event-meta-row">
+                                    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                                    <span>6:30 – 8:30 PM</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cal-event-item dining">
+                            <div class="event-title">Dining Society w/ Sev Keshishian</div>
+                            <div class="event-meta">
+                                <div class="event-meta-row">
+                                    <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                                    <span>Wed, Feb 18</span>
+                                </div>
+                                <div class="event-meta-row">
+                                    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                                    <span>6:30 – 8:00 PM</span>
+                                </div>
+                                <div class="event-meta-row location">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                                    <span>14106 Ventura Blvd</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cal-event-item volunteer">
+                            <div class="event-title">Project Angel Food Volunteering</div>
+                            <div class="event-meta">
+                                <div class="event-meta-row">
+                                    <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                                    <span>Sun, Feb 22</span>
+                                </div>
+                                <div class="event-meta-row">
+                                    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                                    <span>12:45 – 4:00 PM</span>
+                                </div>
+                                <div class="event-meta-row location">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                                    <span>922 Vine St, Hollywood</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cal-event-item dining">
+                            <div class="event-title">Dining Society w/ Andrew Schlegel</div>
+                            <div class="event-meta">
+                                <div class="event-meta-row">
+                                    <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                                    <span>Wed, Feb 25</span>
+                                </div>
+                                <div class="event-meta-row">
+                                    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                                    <span>6:30 – 8:00 PM</span>
+                                </div>
+                                <div class="event-meta-row location">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                                    <span>11677 San Vicente Blvd</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <p class="events-note-new">
-                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                    RSVP forms available in the <strong>TREA Newsletter</strong>
-                </p>
+                <!-- MARCH -->
+                <div class="month-column">
+                    <div class="month-header">
+                        <h3>March</h3>
+                        <span class="year">2026</span>
+                    </div>
+                    <div class="events-list">
+                        <div class="cal-event-item analyst">
+                            <div class="event-title">Analyst Program Session #2 <span class="status">Pending</span></div>
+                            <div class="event-meta">
+                                <div class="event-meta-row">
+                                    <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                                    <span>Wed, Mar 4</span>
+                                </div>
+                                <div class="event-meta-row">
+                                    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                                    <span>6:30 – 8:30 PM</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cal-event-item analyst">
+                            <div class="event-title">Analyst Program Session #3 <span class="status">Pending</span></div>
+                            <div class="event-meta">
+                                <div class="event-meta-row">
+                                    <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                                    <span>Wed, Mar 25</span>
+                                </div>
+                                <div class="event-meta-row">
+                                    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                                    <span>6:30 – 8:30 PM</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="month-placeholder">
+                            <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9 10H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm-8 4H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/></svg>
+                            <p>More events<br>coming soon</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- APRIL -->
+                <div class="month-column">
+                    <div class="month-header">
+                        <h3>April</h3>
+                        <span class="year">2026</span>
+                    </div>
+                    <div class="events-list">
+                        <div class="cal-event-item analyst">
+                            <div class="event-title">Analyst Program Session #4 <span class="status">Pending</span></div>
+                            <div class="event-meta">
+                                <div class="event-meta-row">
+                                    <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                                    <span>Wed, Apr 15</span>
+                                </div>
+                                <div class="event-meta-row">
+                                    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                                    <span>6:30 – 8:30 PM</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cal-event-item analyst">
+                            <div class="event-title">Analyst Program Session #5 <span class="status">Pending</span></div>
+                            <div class="event-meta">
+                                <div class="event-meta-row">
+                                    <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                                    <span>Wed, Apr 22</span>
+                                </div>
+                                <div class="event-meta-row">
+                                    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                                    <span>6:30 – 8:30 PM</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="month-placeholder">
+                            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <p>End of semester<br>events TBA</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
