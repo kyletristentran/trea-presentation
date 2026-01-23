@@ -546,128 +546,133 @@
 
         /* Slide 2 - About TREA */
         .slide-2 {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('pics/usc_campus.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            padding: 60px;
+            background: linear-gradient(135deg, #8B2332 0%, #5c1821 100%);
+            padding: 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+
+        .slide-2::before {
+            content: '';
+            position: absolute;
+            top: -150px;
+            right: -150px;
+            width: 500px;
+            height: 500px;
+            border: 2px solid rgba(255, 199, 44, 0.1);
+            border-radius: 50%;
+        }
+
+        .slide-2::after {
+            content: '';
+            position: absolute;
+            bottom: -200px;
+            left: -200px;
+            width: 600px;
+            height: 600px;
+            border: 2px solid rgba(255, 199, 44, 0.08);
+            border-radius: 50%;
         }
 
         .slide-2 h2 {
             color: white;
-            font-size: 64px;
-            margin-bottom: 60px;
+            font-size: 48px;
+            margin-bottom: 35px;
             font-weight: 300;
             letter-spacing: 3px;
+            position: relative;
+            z-index: 1;
         }
 
         .pillars-container {
-            display: flex;
-            gap: 50px;
-            justify-content: center;
-            flex-wrap: wrap;
-            max-width: 1400px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1100px;
+            position: relative;
+            z-index: 1;
         }
 
         .pillar {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.08);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 20px;
-            padding: 40px 30px;
-            flex: 1;
-            min-width: 350px;
+            border: 1px solid rgba(255,199,44,0.15);
+            border-radius: 16px;
+            padding: 28px 22px;
             color: white;
-            transition: transform 0.3s ease, background 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .pillar:hover {
-            transform: translateY(-10px);
-            background: rgba(255,255,255,0.15);
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(255,199,44,0.4);
         }
 
-        .about-pillar-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 25px;
+        .pillar-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, rgba(255,199,44,0.2), rgba(255,199,44,0.05));
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 50px;
-            position: relative;
         }
 
-        .about-icon-network {
-            background: linear-gradient(135deg, #FFC72C, #FFD700);
-            border-radius: 50%;
-            box-shadow: 0 8px 20px rgba(255, 199, 44, 0.3);
+        .pillar-icon svg {
+            width: 26px;
+            height: 26px;
+            fill: #FFC72C;
         }
 
-        .about-icon-handshake {
-            background: linear-gradient(135deg, #FFC72C, #FFD700);
-            clip-path: polygon(50% 0%, 90% 25%, 90% 75%, 50% 100%, 10% 75%, 10% 25%);
-            box-shadow: 0 8px 20px rgba(255, 199, 44, 0.3);
-        }
-
-        .about-icon-growth {
-            background: linear-gradient(135deg, #FFC72C, #FFD700);
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(255, 199, 44, 0.3);
-        }
-
-        .about-pillar-title {
-            font-size: 24px;
-            font-weight: 600;
+        .pillar h3 {
+            font-size: 18px;
+            font-weight: 500;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
+            color: #FFC72C;
             line-height: 1.3;
-            letter-spacing: 0.5px;
         }
 
-        .about-pillar-content {
+        .pillar ul {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
-        .about-pillar-content li {
-            margin-bottom: 20px;
-            padding-left: 28px;
+        .pillar ul li {
+            margin-bottom: 10px;
+            padding-left: 16px;
             position: relative;
-            font-size: 16px;
-            line-height: 1.7;
-            opacity: 0.95;
+            font-size: 14px;
+            line-height: 1.5;
+            opacity: 0.9;
             font-weight: 300;
         }
 
-        .about-pillar-content li::before {
-            content: '•';
+        .pillar ul li::before {
+            content: '';
             position: absolute;
             left: 0;
-            color: #FFC72C;
-            font-size: 20px;
-            font-weight: bold;
+            top: 7px;
+            width: 5px;
+            height: 5px;
+            background: #FFC72C;
+            border-radius: 50%;
         }
 
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .pillar ul li:last-child {
+            margin-bottom: 0;
         }
-
-        .about-pillar-card:nth-child(1) { animation: fadeInUp 1s ease-out 0.2s backwards; }
-        .about-pillar-card:nth-child(2) { animation: fadeInUp 1s ease-out 0.4s backwards; }
-        .about-pillar-card:nth-child(3) { animation: fadeInUp 1s ease-out 0.6s backwards; }
 
         /* Responsive Design for About TREA */
         @media (max-width: 1024px) {
@@ -3110,7 +3115,9 @@
             <h2>About TREA</h2>
             <div class="pillars-container">
                 <div class="pillar">
-                    <span class="pillar-icon">🤝</span>
+                    <div class="pillar-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-7 9c0-2.67 5.33-4 7-4s7 1.33 7 4v1H5v-1zm9-9c2.21 0 4-1.79 4-4s-1.79-4-4-4M17 21v-1c0-1.1-.45-2.13-1.24-2.95C17.45 16.55 19.5 17 21 17c1.67 0 5 1.33 5 4v1h-5"/></svg>
+                    </div>
                     <h3>Recruiting & Career Exposure</h3>
                     <ul>
                         <li>Host on-campus and off-campus networking events with top real estate employers</li>
@@ -3118,7 +3125,9 @@
                     </ul>
                 </div>
                 <div class="pillar">
-                    <span class="pillar-icon">🏢</span>
+                    <div class="pillar-icon">
+                        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                    </div>
                     <h3>Member Community & Engagement</h3>
                     <ul>
                         <li>Social events, coffee chats, and casual meet-ups with peers and professionals</li>
@@ -3127,7 +3136,9 @@
                     </ul>
                 </div>
                 <div class="pillar">
-                    <span class="pillar-icon">📈</span>
+                    <div class="pillar-icon">
+                        <svg viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+                    </div>
                     <h3>Professional Development</h3>
                     <ul>
                         <li>Analyst Program for hands-on deal analysis and industry skill-building</li>
@@ -3143,85 +3154,85 @@
             <h2>Meet the E-Board</h2>
             <div class="eboard-grid">
                 <div class="board-member">
-                    <img src="board/samantha.jpeg" alt="Samantha" class="member-headshot">
+                    <img src="board/samantha.jpeg" alt="Samantha Armendariz" class="member-headshot">
                     <div>
-                        <div class="member-name"><span class="member-asterisk">*</span>Samantha</div>
+                        <div class="member-name"><span class="member-asterisk">*</span>Samantha Armendariz</div>
                         <div class="member-position">President</div>
                     </div>
                 </div>
                 <div class="board-member">
-                    <img src="board/dario.jpg" alt="Dario" class="member-headshot">
+                    <img src="board/dario.jpg" alt="Dario Ghamgosar" class="member-headshot">
                     <div>
-                        <div class="member-name"><span class="member-asterisk">*</span>Dario</div>
+                        <div class="member-name"><span class="member-asterisk">*</span>Dario Ghamgosar</div>
                         <div class="member-position">President</div>
                     </div>
                 </div>
                 <div class="board-member">
-                    <img src="board/kyle.png" alt="Kyle" class="member-headshot">
+                    <img src="board/kyle.png" alt="Kyle Tran" class="member-headshot">
                     <div>
-                        <div class="member-name"><span class="member-asterisk">*</span>Kyle</div>
+                        <div class="member-name"><span class="member-asterisk">*</span>Kyle Tran</div>
                         <div class="member-position">Director of Business Development</div>
                     </div>
                 </div>
                 <div class="board-member">
-                    <img src="board/christian.jpeg" alt="Christian" class="member-headshot">
+                    <img src="board/christian.jpeg" alt="Christian Waldron" class="member-headshot">
                     <div>
-                        <div class="member-name">Christian</div>
+                        <div class="member-name">Christian Waldron</div>
                         <div class="member-position">Director of Finance</div>
                     </div>
                 </div>
                 <div class="board-member">
-                    <img src="board/kayla.png" alt="Kaya" class="member-headshot">
+                    <img src="board/kayla.png" alt="Kaya Tong" class="member-headshot">
                     <div>
-                        <div class="member-name">Kaya</div>
+                        <div class="member-name">Kaya Tong</div>
                         <div class="member-position">Director of External Communication</div>
                     </div>
                 </div>
                 <div class="board-member">
-                    <img src="board/ebony.jpg" alt="Ebony" class="member-headshot">
+                    <img src="board/ebony.jpg" alt="Ebony Crandle" class="member-headshot">
                     <div>
-                        <div class="member-name"><span class="member-asterisk">*</span>Ebony</div>
+                        <div class="member-name"><span class="member-asterisk">*</span>Ebony Crandle</div>
                         <div class="member-position">Director of Internal Communication</div>
                     </div>
                 </div>
                 <div class="board-member">
-                    <img src="board/shivani.png" alt="Shivani" class="member-headshot">
+                    <img src="board/shivani.png" alt="Shivani Ashyanth" class="member-headshot">
                     <div>
-                        <div class="member-name"><span class="member-asterisk">*</span>Shivani</div>
+                        <div class="member-name"><span class="member-asterisk">*</span>Shivani Ashyanth</div>
                         <div class="member-position">Director of On-Campus Events</div>
                     </div>
                 </div>
                 <div class="board-member">
-                    <img src="board/nathan.jpg" alt="Nathan" class="member-headshot">
+                    <img src="board/nathan.jpg" alt="Nathan Castanaza" class="member-headshot">
                     <div>
-                        <div class="member-name">Nathan</div>
+                        <div class="member-name">Nathan Castanaza</div>
                         <div class="member-position">Director of Off-Campus Events</div>
                     </div>
                 </div>
                 <div class="board-member">
-                    <img src="board/keenan.jpg" alt="Keenan" class="member-headshot">
+                    <img src="board/keenan.jpg" alt="Keenan Houlihan" class="member-headshot">
                     <div>
-                        <div class="member-name">Keenan</div>
+                        <div class="member-name">Keenan Houlihan</div>
                         <div class="member-position">Director of Recruitment</div>
                     </div>
                 </div>
                 <div class="board-member">
-                    <img src="board/kody.jpeg" alt="Kody" class="member-headshot">
+                    <img src="board/kody.jpeg" alt="Kody Chapman" class="member-headshot">
                     <div>
-                        <div class="member-name">Kody</div>
+                        <div class="member-name">Kody Chapman</div>
                         <div class="member-position">Director of Mentorship</div>
                     </div>
                 </div>
                 <div class="board-member">
-                    <img src="board/wlla.jpg" alt="Willa" class="member-headshot">
+                    <img src="board/wlla.jpg" alt="Willa Chandler" class="member-headshot">
                     <div>
-                        <div class="member-name">Willa</div>
+                        <div class="member-name">Willa Chandler</div>
                         <div class="member-position">Director of Professional Relations</div>
                     </div>
                 </div>
                 <div class="board-member">
                     <div>
-                        <div class="member-name">Sophia</div>
+                        <div class="member-name">Sophia Pintor</div>
                         <div class="member-position">Director of DEI</div>
                     </div>
                 </div>
