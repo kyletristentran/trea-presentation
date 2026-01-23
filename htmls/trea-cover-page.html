@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TREA - Trojan Real Estate Association</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #8B2332 0%, #5c1821 100%);
+            overflow: hidden;
+        }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* =====================================================
+           BACKGROUND DESIGN ELEMENTS
+           ===================================================== */
+        
+        /* Geometric grid pattern */
+        .grid-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(255,199,44,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,199,44,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.8;
+        }
+
+        /* Large decorative circles */
+        .deco-circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(255,199,44,0.1);
+        }
+
+        .deco-circle-1 {
+            width: 800px;
+            height: 800px;
+            top: -300px;
+            right: -200px;
+            animation: rotate-slow 60s linear infinite;
+        }
+
+        .deco-circle-2 {
+            width: 600px;
+            height: 600px;
+            bottom: -200px;
+            left: -150px;
+            animation: rotate-slow 45s linear infinite reverse;
+        }
+
+        .deco-circle-3 {
+            width: 400px;
+            height: 400px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid rgba(255,199,44,0.08);
+        }
+
+        @keyframes rotate-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Corner accents */
+        .corner-accent {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+        }
+
+        .corner-accent svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: rgba(255,199,44,0.15);
+            stroke-width: 1;
+        }
+
+        .corner-top-left {
+            top: 40px;
+            left: 40px;
+        }
+
+        .corner-top-right {
+            top: 40px;
+            right: 40px;
+            transform: rotate(90deg);
+        }
+
+        .corner-bottom-left {
+            bottom: 40px;
+            left: 40px;
+            transform: rotate(-90deg);
+        }
+
+        .corner-bottom-right {
+            bottom: 40px;
+            right: 40px;
+            transform: rotate(180deg);
+        }
+
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255,199,44,0.3);
+            border-radius: 50%;
+            animation: float-particle 8s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { top: 60%; left: 85%; animation-delay: 1s; }
+        .particle:nth-child(3) { top: 80%; left: 20%; animation-delay: 2s; }
+        .particle:nth-child(4) { top: 30%; left: 75%; animation-delay: 3s; }
+        .particle:nth-child(5) { top: 70%; left: 60%; animation-delay: 4s; }
+        .particle:nth-child(6) { top: 15%; left: 50%; animation-delay: 5s; }
+
+        @keyframes float-particle {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.3; }
+            50% { transform: translateY(-30px) scale(1.5); opacity: 0.6; }
+        }
+
+        /* =====================================================
+           MAIN CONTENT
+           ===================================================== */
+        .content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+        }
+
+        /* Logo container */
+        .logo-section {
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .logo-frame {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Animated rings around logo */
+        .logo-ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 2px solid transparent;
+        }
+
+        .logo-ring-1 {
+            border-color: rgba(255,199,44,0.4);
+            animation: pulse-ring 3s ease-in-out infinite;
+        }
+
+        .logo-ring-2 {
+            inset: -15px;
+            border-color: rgba(255,199,44,0.2);
+            animation: pulse-ring 3s ease-in-out infinite 0.5s;
+        }
+
+        .logo-ring-3 {
+            inset: -30px;
+            border-color: rgba(255,199,44,0.1);
+            animation: pulse-ring 3s ease-in-out infinite 1s;
+        }
+
+        @keyframes pulse-ring {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.7; }
+        }
+
+        .logo-inner {
+            position: absolute;
+            inset: 8px;
+            background: linear-gradient(135deg, rgba(255,199,44,0.15), rgba(255,199,44,0.05));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,199,44,0.3);
+            overflow: hidden;
+        }
+
+        .logo-inner img {
+            width: 85%;
+            height: 85%;
+            object-fit: contain;
+        }
+
+        /* Placeholder for logo */
+        .logo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-placeholder svg {
+            width: 70%;
+            height: 70%;
+            fill: #FFC72C;
+        }
+
+        /* Title section */
+        .title-section {
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .pre-title {
+            font-size: 14px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .main-title {
+            font-size: 72px;
+            font-weight: 200;
+            letter-spacing: 8px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .main-title .highlight {
+            background: linear-gradient(90deg, #FFC72C, #FFD700, #FFC72C);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s ease-in-out infinite;
+            font-weight: 300;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .subtitle {
+            font-size: 22px;
+            font-weight: 300;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 50px;
+        }
+
+        /* Divider line */
+        .divider {
+            width: 120px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #FFC72C, transparent);
+            margin: 0 auto 50px;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        /* Event info section */
+        .event-info {
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .event-title {
+            font-size: 28px;
+            font-weight: 300;
+            color: #FFC72C;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .event-details {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            font-size: 16px;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .event-detail {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .event-detail svg {
+            width: 20px;
+            height: 20px;
+            fill: #FFC72C;
+        }
+
+        /* Bottom section */
+        .bottom-section {
+            position: absolute;
+            bottom: 50px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            animation: fadeIn 1s ease-out 1s both;
+        }
+
+        .usc-badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 30px;
+            border: 1px solid rgba(255,199,44,0.15);
+        }
+
+        .usc-badge svg {
+            width: 24px;
+            height: 24px;
+            fill: #FFC72C;
+        }
+
+        .usc-badge span {
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Navigation hint */
+        .nav-hint {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <!-- Background Elements -->
+        <div class="grid-pattern"></div>
+        
+        <div class="deco-circle deco-circle-1"></div>
+        <div class="deco-circle deco-circle-2"></div>
+        <div class="deco-circle deco-circle-3"></div>
+
+        <!-- Corner Accents -->
+        <div class="corner-accent corner-top-left">
+            <svg viewBox="0 0 100 100">
+                <path d="M0 50 L0 0 L50 0" />
+                <path d="M0 30 L0 0 L30 0" stroke-width="2" />
+            </svg>
+        </div>
+        <div class="corner-accent corner-top-right">
+            <svg viewBox="0 0 100 100">
+                <path d="M0 50 L0 0 L50 0" />
+                <path d="M0 30 L0 0 L30 0" stroke-width="2" />
+            </svg>
+        </div>
+        <div class="corner-accent corner-bottom-left">
+            <svg viewBox="0 0 100 100">
+                <path d="M0 50 L0 0 L50 0" />
+                <path d="M0 30 L0 0 L30 0" stroke-width="2" />
+            </svg>
+        </div>
+        <div class="corner-accent corner-bottom-right">
+            <svg viewBox="0 0 100 100">
+                <path d="M0 50 L0 0 L50 0" />
+                <path d="M0 30 L0 0 L30 0" stroke-width="2" />
+            </svg>
+        </div>
+
+        <!-- Floating Particles -->
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <!-- Logo -->
+            <div class="logo-section">
+                <div class="logo-frame">
+                    <div class="logo-ring logo-ring-3"></div>
+                    <div class="logo-ring logo-ring-2"></div>
+                    <div class="logo-ring logo-ring-1"></div>
+                    <div class="logo-inner">
+                        <!-- Replace with actual logo: <img src="trea_logo_transparent.png" alt="TREA Logo"> -->
+                        <div class="logo-placeholder">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Title -->
+            <div class="title-section">
+                <p class="pre-title">University of Southern California</p>
+                <h1 class="main-title"><span class="highlight">TREA</span></h1>
+                <p class="subtitle">Trojan Real Estate Association</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Event Info -->
+            <div class="event-info">
+                <h2 class="event-title">Welcome Meeting</h2>
+                <div class="event-details">
+                    <div class="event-detail">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9 10H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm-8 4H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/>
+                        </svg>
+                        <span>January 22, 2026</span>
+                    </div>
+                    <div class="event-detail">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                        </svg>
+                        <span>6:30 PM</span>
+                    </div>
+                    <div class="event-detail">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        <span>Spring 2026</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Badge -->
+        <div class="bottom-section">
+            <div class="usc-badge">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/>
+                </svg>
+                <span>USC Marshall School of Business</span>
+            </div>
+        </div>
+
+        <div class="nav-hint">Press → to continue</div>
+    </div>
+</body>
+</html>
